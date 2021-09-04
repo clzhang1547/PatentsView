@@ -69,3 +69,12 @@ def get_raw_dist(str0, str1):
         return len(str0) + len(str1)
     elif len(str0) > 0 and len(str1) > 0:
         return Levenshtein.distance(str0, str1)
+
+# a function to remove stopwords
+def remove_stopwords(org_name, sws):
+    org_name = org_name.lower()
+    org_name = re.sub(r'[^ \w+]', '', org_name)
+    org_words = [x.strip() for x in org_name.split()]
+    org_words = [x for x in org_words if x not in sws]
+    org_name_no_sws = ' '.join(org_words)
+    return org_name_no_sws
